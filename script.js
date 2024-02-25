@@ -1,41 +1,23 @@
-function sendMessage() {
-  var userInput = document.getElementById('user-input').value;
-  displayMessage('user', userInput);
+function getRandomReply() {
+  const replies = [
+    "I'm sorry, I didn't quite catch that.",
+    "Interesting! Tell me more.",
+    "That's a great question!",
+    "Hmm, let me think about that for a moment.",
+    "I'm here to help. What can I assist you with?",
+    "That's fascinating! Can you elaborate?",
+    "I'm not sure I understand. Could you please rephrase?",
+    "Absolutely!",
+    "I'm glad you asked! Here's what I think...",
+    "Let me check on that for you.",
+  ];
 
-  // Generate a reply
-  var reply = generateReply(userInput);
-  displayMessage('bot', reply);
+  const randomIndex = Math.floor(Math.random() * replies.length);
+  return replies[randomIndex];
 }
 
-function generateReply(userInput) {
-  // Example logic to generate a reply
-  var words = userInput.split(' ');
-
-  // Check if the input matches any predefined arrays
-  for (var i = 0; i < wordArrays.length; i++) {
-    var wordArray = wordArrays[i];
-    if (arraysMatch(wordArray, words)) {
-      return 'Match found: ' + wordArray.join(', ');
-    }
-  }
-
-  // If no match found, return a default response
-  return 'Sorry, I didn\'t understand your message.';
-}
-
-function arraysMatch(arr1, arr2) {
-  // Helper function to check if two arrays contain the same elements
-  if (arr1.length !== arr2.length) return false;
-  for (var i = 0; i < arr1.length; i++) {
-    if (arr1[i] !== arr2[i]) return false;
-  }
-  return true;
-}
-
-function displayMessage(sender, message) {
-  var chatBox = document.getElementById('chat-box');
-  var messageElement = document.createElement('div');
-  messageElement.classList.add('message', sender + '-message');
-  messageElement.innerText = message;
-  chatBox.appendChild(messageElement);
-}
+// Example usage:
+const userMessage = "Can you tell me more about this topic?";
+const botReply = getRandomReply();
+console.log("User: " + userMessage);
+console.log("Bot: " + botReply);
